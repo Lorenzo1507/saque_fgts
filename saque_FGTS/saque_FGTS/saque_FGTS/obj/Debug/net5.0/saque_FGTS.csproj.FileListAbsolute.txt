@@ -1,0 +1,16 @@
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\obj\Debug\net5.0\saque_FGTS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\obj\Debug\net5.0\saque_FGTS.AssemblyInfoInputs.cache
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\obj\Debug\net5.0\saque_FGTS.AssemblyInfo.cs
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\obj\Debug\net5.0\saque_FGTS.csproj.CoreCompileInputs.cache
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\bin\Debug\net5.0\saque_FGTS.exe
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\bin\Debug\net5.0\saque_FGTS.deps.json
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\bin\Debug\net5.0\saque_FGTS.runtimeconfig.json
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\bin\Debug\net5.0\saque_FGTS.runtimeconfig.dev.json
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\bin\Debug\net5.0\saque_FGTS.dll
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\bin\Debug\net5.0\ref\saque_FGTS.dll
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\bin\Debug\net5.0\saque_FGTS.pdb
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\obj\Debug\net5.0\saque_FGTS.dll
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\obj\Debug\net5.0\ref\saque_FGTS.dll
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\obj\Debug\net5.0\saque_FGTS.pdb
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\obj\Debug\net5.0\saque_FGTS.genruntimeconfig.cache
+C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_FGTS\saque_FGTS\saque_FGTS\obj\Debug\net5.0\saque_FGTS.csproj.AssemblyReference.cache
