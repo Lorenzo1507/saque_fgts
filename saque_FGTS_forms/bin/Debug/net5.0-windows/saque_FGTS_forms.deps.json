@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "saque_FGTS_forms/1.0.0": {
+        "runtime": {
+          "saque_FGTS_forms.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "saque_FGTS_forms/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
