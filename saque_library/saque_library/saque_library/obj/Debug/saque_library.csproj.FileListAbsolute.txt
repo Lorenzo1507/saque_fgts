@@ -1,6 +1,0 @@
-C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_library\saque_library\saque_library\bin\Debug\saque_library.dll
-C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_library\saque_library\saque_library\bin\Debug\saque_library.pdb
-C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_library\saque_library\saque_library\obj\Debug\saque_library.csproj.AssemblyReference.cache
-C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_library\saque_library\saque_library\obj\Debug\saque_library.csproj.CoreCompileInputs.cache
-C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_library\saque_library\saque_library\obj\Debug\saque_library.dll
-C:\Users\Lorenzo\OneDrive\Área de Trabalho\saque_library\saque_library\saque_library\obj\Debug\saque_library.pdb
