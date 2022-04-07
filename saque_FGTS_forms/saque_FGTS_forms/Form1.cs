@@ -91,10 +91,6 @@ namespace saque_FGTS_forms
 
                // string jsonRes = fgts.Resgate_json(jsonEntrada, jsonEntradaRes);
 
-    
-                richTextBoxInput.Clear();
-                richTextBoxInput.AppendText(jsonFGTS);
-
                 richTextBoxOutPut.Clear();
                 richTextBoxOutPut.AppendText(jsonFluxo);
 
@@ -244,7 +240,7 @@ namespace saque_FGTS_forms
             Dictionary<string, Object> listJsonRes = RecieveJson.RecebeJson(jsonFluxo);
 
             string jsonEntradaRes = "{\n\"TYPE\":\"RESGATE\",\n";
-            jsonEntradaRes += "\"DATA_CALCULO\":\"" + dataPagStr + "\",\n";
+            jsonEntradaRes += "\"DATAPAGAMENTO\":\"" + dataPagStr + "\",\n";
             jsonEntradaRes += "\"%JUROSMORA\":\"" + juroMoraAMStr + "\",\n";
             jsonEntradaRes += "\"VALORMULTA\":\"" + taxaMulta + "\",\n";
             jsonEntradaRes += "\"QTD_PARCELAS\":" + quantidadeParcelas_str + ",\n";
@@ -259,6 +255,9 @@ namespace saque_FGTS_forms
             jsonEntradaRes += listJsonRes["TABELA_FLUXO_PARCELAS"].ToString();
 
             jsonEntradaRes += "}\n";
+
+            richTextBoxInput.Clear();
+            richTextBoxInput.AppendText(jsonEntradaRes);
 
             string resgate = fgts.Resgate_verdadeiro(jsonEntradaRes);
 

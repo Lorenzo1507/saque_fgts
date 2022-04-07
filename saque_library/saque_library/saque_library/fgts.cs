@@ -385,6 +385,7 @@ namespace saque_library
 
             return saldoAtualizado;
         }*/
+       //função que calcula apenas a data, valor da parcela e dc e retorna o json
         public static string JSON_FGTS(string jsonEntrada)
         {
             Dictionary<string, Object> listJsonEntrada = RecieveJson.RecebeJson(jsonEntrada);
@@ -599,17 +600,16 @@ namespace saque_library
                 //calcula o total do valor presente
                 vpBruto = fgts.VpBruto(valorPresente, vpBruto);
 
-
-                jsonParc += "\"PARCELA" + i + "_VALOR\" :" + saque.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ",\n";
-
-                jsonTabela += "{\"PARCELA\" :" + i + ", \"DATAVENCPARCELA\":" + dataFut + ", \"DC\":" + dc.ToString() + ", \"PARCELA_VALOR\":" + saque.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"JUROS_VALOR\":" + juros.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"AMORTIZADO_VALOR\":" + amortizado.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"IOFTOTALPARCELA_VALOR\":" + iofVdd.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"DIVIDA_SALDODEVEDORATUALIZADO_VALOR\":" + saqueVdd.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"IOF_BASICO\":" + iofBas.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"IOF_FLAT\":" + iofAdd.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"DESAGIO\":" + desagio.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + ", \"VALOR_PRESENTE\":" + valorPresente.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + "}, \n";
-
-
-                saqueVdd = fgts.Saldo_devedor(saqueVdd, saque);
-
                 //incrementa nos valores de saque e amortizado para mostrar a soma total
                 totalSaque = fgts.TotalSaque(saque, totalSaque);
                 totalAmortizado = fgts.Amortizado_total(amortizado, totalAmortizado);
+
+                jsonParc += "\"PARCELA" + i + "_VALOR\" :" + saque.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ",\n";
+
+                jsonTabela += "{\"PARCELA\" :" + i + ", \"DATAVENCPARCELA\":" + dataFut + ", \"DC\":" + dc.ToString() + ", \"PARCELA_VALOR\":" + saque.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"JUROS_VALOR\":" + juros.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"AMORTIZADO_VALOR\":" + amortizado.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"IOFTOTALPARCELA_VALOR\":" + iofVdd.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"DIVIDA_SALDODEVEDORATUALIZADO_VALOR\":" + totalSaque.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"IOF_BASICO\":" + iofBas.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"IOF_FLAT\":" + iofAdd.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"DESAGIO\":" + desagio.ToString("0.000000", System.Globalization.CultureInfo.InvariantCulture) + ", \"VALOR_PRESENTE\":" + valorPresente.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + "}, \n";
+
+
+                saqueVdd = fgts.Saldo_devedor(saqueVdd, saque);
 
             }
             //tira a últma vírgula antes de fechar o array
@@ -679,7 +679,7 @@ namespace saque_library
             //tabelaArray = tabelaArray.Where(x => !string.IsNullOrEmpty(x)).ToArray();
 
             //Apaga a tabela fluxo e troca "}" por "," para dar continuidade no json
-            jsonEntradaRes = RecieveJson.RemoveItem(jsonEntradaRes, "TABELA_FLUXO_PARCELAS");
+            //jsonEntradaRes = RecieveJson.RemoveItem(jsonEntradaRes, "TABELA_FLUXO_PARCELAS");
             jsonEntradaRes = RecieveJson.SubsEndByCom(jsonEntradaRes);
 
             List<string> parcelaList = RecieveJson.ListaParcela(tabelaArray);
@@ -723,7 +723,7 @@ namespace saque_library
             string[] arrayValorPresente = valorPresenteList.ToArray();
 
             string json = jsonEntradaRes;
-            string jsonTabela = null;
+            string jsonTabelaAtualizada = null;
 
             string parc = arrayParcelas[0];
             double dc = 0;
@@ -754,29 +754,26 @@ namespace saque_library
                         double jurosMora = fgts.JurosMora(arraySaqueVdd[i], jurosMoraAD, dc);
                         //string trimmed = String.Concat(example.Where(c => !Char.IsWhiteSpace(c)));
 
-                        jsonTabela += "{\"PARCELA\" :" + arrayParcJson[i] + ", \"DATAVENCPARCELA\":\"" + String.Concat(arrayData[i].Where(c => !Char.IsWhiteSpace(c))) + "\", \"DC\":" + dc.ToString() + ", \"PARCELA_VALOR\":" + arrayValorParc[i] + ", \"JUROS_VALOR\":" + arrayJuros[i] + ", \"AMORTIZADO_VALOR\":" + arrayAmortizado[i] + ", \"IOFTOTALPARCELA_VALOR\":" + arrayIOF[i] + ", \"DIVIDA_SALDODEVEDORATUALIZADO_VALOR\":" + arraySaqueVdd[i] + ", \"IOF_BASICO\":" + arrayIofBas[i] + ", \"IOF_FLAT\":" + arrayIofFlat[i] + ", \"DESAGIO\":" + arrayDesagio[i] + ", \"VALOR_PRESENTE\":" + arrayValorPresente[i] + ", \"MULTA\":" + multa.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"%MORA_DC\":" + mora_dc.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"JUROS_MORA\":" + jurosMora.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + "}, \n";
+                        jsonTabelaAtualizada += "{\"PARCELA\" :" + arrayParcJson[i] + ", \"DATAVENCPARCELA\":\"" + String.Concat(arrayData[i].Where(c => !Char.IsWhiteSpace(c))) + "\", \"DC\":" + dc.ToString() + ", \"PARCELA_VALOR\":" + arrayValorParc[i] + ", \"JUROS_VALOR\":" + arrayJuros[i] + ", \"AMORTIZADO_VALOR\":" + arrayAmortizado[i] + ", \"IOFTOTALPARCELA_VALOR\":" + arrayIOF[i] + ", \"DIVIDA_SALDODEVEDORATUALIZADO_VALOR\":" + arraySaqueVdd[i] + ", \"IOF_BASICO\":" + arrayIofBas[i] + ", \"IOF_FLAT\":" + arrayIofFlat[i] + ", \"DESAGIO\":" + arrayDesagio[i] + ", \"VALOR_PRESENTE\":" + arrayValorPresente[i] + ", \"MULTA\":" + multa.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"%MORA_DC\":" + mora_dc.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + ", \"JUROS_MORA\":" + jurosMora.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture) + "}, \n";
                     }
 
                     else
                     {
-                        jsonTabela += "{\"PARCELA\" :" + arrayParcJson[i] + ", \"DATAVENCPARCELA\":\"" + String.Concat(arrayData[i].Where(c => !Char.IsWhiteSpace(c))) + "\", \"DC\":" + dc.ToString() + ", \"PARCELA_VALOR\":" + arrayValorParc[i] + ", \"JUROS_VALOR\":" + arrayJuros[i] + ", \"AMORTIZADO_VALOR\":" + arrayAmortizado[i] + ", \"IOFTOTALPARCELA_VALOR\":" + arrayIOF[i] + ", \"DIVIDA_SALDODEVEDORATUALIZADO_VALOR\":" + arraySaqueVdd[i] + ", \"IOF_BASICO\":" + arrayIofBas[i] + ", \"IOF_FLAT\":" + arrayIofFlat[i] + ", \"DESAGIO\":" + arrayDesagio[i] + ", \"VALOR_PRESENTE\":" + arrayValorPresente[i] + "}, \n";
+                        jsonTabelaAtualizada += "{\"PARCELA\" :" + arrayParcJson[i] + ", \"DATAVENCPARCELA\":\"" + String.Concat(arrayData[i].Where(c => !Char.IsWhiteSpace(c))) + "\", \"DC\":" + dc.ToString() + ", \"PARCELA_VALOR\":" + arrayValorParc[i] + ", \"JUROS_VALOR\":" + arrayJuros[i] + ", \"AMORTIZADO_VALOR\":" + arrayAmortizado[i] + ", \"IOFTOTALPARCELA_VALOR\":" + arrayIOF[i] + ", \"DIVIDA_SALDODEVEDORATUALIZADO_VALOR\":" + arraySaqueVdd[i] + ", \"IOF_BASICO\":" + arrayIofBas[i] + ", \"IOF_FLAT\":" + arrayIofFlat[i] + ", \"DESAGIO\":" + arrayDesagio[i] + ", \"VALOR_PRESENTE\":" + arrayValorPresente[i] + "}, \n";
                     }
 
                 }
-                else
-                {
-                    jsonTabela += "{\"PARCELA\" :" + arrayParcJson[i] + ", \"DATAVENCPARCELA\":\"" + String.Concat(arrayData[i].Where(c => !Char.IsWhiteSpace(c))) + "\", \"DC\":" + arrayDc[i] + ", \"PARCELA_VALOR\":" + arrayValorParc[i] + ", \"JUROS_VALOR\":" + arrayJuros[i] + ", \"AMORTIZADO_VALOR\":" + arrayAmortizado[i] + ", \"IOFTOTALPARCELA_VALOR\":" + arrayIOF[i] + ", \"DIVIDA_SALDODEVEDORATUALIZADO_VALOR\":" + arraySaqueVdd[i] + ", \"IOF_BASICO\":" + arrayIofBas[i] + ", \"IOF_FLAT\":" + arrayIofFlat[i] + ", \"DESAGIO\":" + arrayDesagio[i] + ", \"VALOR_PRESENTE\":" + arrayValorPresente[i] + "}, \n";
-                }
+                
             }
 
             //tira a últma vírgula antes de fechar o array
-            int index = jsonTabela.LastIndexOf(',');
-            jsonTabela = jsonTabela.Remove(index, 1);
+            int index = jsonTabelaAtualizada.LastIndexOf(',');
+            jsonTabelaAtualizada = jsonTabelaAtualizada.Remove(index, 1);
 
-            json += "\"TABELA_FLUXO_PARCELAS\":";
+            json += "\"ATUALIZADOS\":";
             json += "[ \n";
 
-            json += jsonTabela;
+            json += jsonTabelaAtualizada;
 
             json += "]\n";
             json += "}\n";
